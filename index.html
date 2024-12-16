@@ -1,105 +1,68 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>قسم الطلاب</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #FDF6E3; /* بيج */
-      color: #5D4037; /* بني */
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 20px 0;
-      font-size: 2.5em;
-      color: #3E2723;
-    }
-
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .card {
-      background-color: #FFF;
-      border: 2px solid #D7CCC8;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      width: 250px;
-      text-align: center;
-      padding: 15px;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px); /* تحريك عند المرور */
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h2 {
-      font-size: 1.5em;
-      margin: 10px 0;
-      color: #6D4C41; /* بني داكن */
-    }
-
-    .card p {
-      font-size: 1.2em;
-      color: #3E2723;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حلقة الإمام حمزة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #FDF6E3; /* بيج */
+            color: #5D4037; /* بني */
+        }
+        header {
+            background-color: #5D4037;
+            color: #FFF3E0;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 1.5rem;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #8D6E63;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            margin: 2rem auto;
+            text-align: center;
+            font-size: 1.25rem;
+        }
+        footer {
+            background-color: #5D4037;
+            color: #FFF3E0;
+            text-align: center;
+            padding: 1rem 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-  <h1>جميع الطلاب ودرجاتهم</h1>
-
-  <div class="card-container">
-    <div class="card">
-      <h2>عبد الله المقبل</h2>
-      <p>المجموع: 192</p>
-    </div>
-    <div class="card">
-      <h2>عمرو طعمة</h2>
-      <p>المجموع: 188</p>
-    </div>
-    <div class="card">
-      <h2>مصعب الجابري</h2>
-      <p>المجموع: 188</p>
-    </div>
-    <div class="card">
-      <h2>عمر الحسين</h2>
-      <p>المجموع: 188</p>
-    </div>
-    <div class="card">
-      <h2>عمار محمد</h2>
-      <p>المجموع: 188</p>
-    </div>
-    <div class="card">
-      <h2>رامي الجطيلي</h2>
-      <p>المجموع: 186</p>
-    </div>
-    <div class="card">
-      <h2>سلطان الحربي</h2>
-      <p>المجموع: 180</p>
-    </div>
-    <div class="card">
-      <h2>بشير النعسان</h2>
-      <p>المجموع: 178</p>
-    </div>
-    <div class="card">
-      <h2>إياد الشريدة</h2>
-      <p>المجموع: 178</p>
-    </div>
-    <div class="card">
-      <h2>محمد زبير</h2>
-      <p>المجموع: 177</p>
-    </div>
-  </div>
+    <header>
+        حلقة الإمام حمزة
+        <p>تعلم القرآن الكريم وتدبر معانيه</p>
+    </header>
+    <nav>
+        <a href="students.html">قسم الطلاب</a>
+        <a href="#">المواد التعليمية</a>
+        <a href="#">الأخبار والإعلانات</a>
+        <a href="#">تواصل معنا</a>
+    </nav>
+    <section>
+        <p>مرحبًا بكم في موقع حلقة الإمام حمزة لتحفيظ القرآن الكريم.</p>
+        <p>اختر القسم الذي ترغب في زيارته من القائمة أعلاه.</p>
+    </section>
+    <footer>
+        &copy; 2024 حلقة الإمام حمزة. جميع الحقوق محفوظة.
+    </footer>
 </body>
 </html>
