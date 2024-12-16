@@ -43,6 +43,23 @@
             border-bottom: 2px solid #ffd700;
             padding-bottom: 0.5rem;
         }
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .student-table th, .student-table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        .student-table th {
+            background-color: #004d40;
+            color: #ffffff;
+        }
+        .student-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
         footer {
             background-color: #004d40;
             color: #ffffff;
@@ -51,6 +68,14 @@
             margin-top: 2rem;
         }
     </style>
+    <script>
+        function showStudents() {
+            document.getElementById('students').style.display = 'block';
+            document.getElementById('resources').style.display = 'none';
+            document.getElementById('news').style.display = 'none';
+            document.getElementById('contact').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -58,25 +83,52 @@
         <p>تعلم القرآن الكريم وتدبر معانيه</p>
     </header>
     <nav>
-        <a href="#students">قسم الطلاب</a>
-        <a href="#resources">المواد التعليمية</a>
-        <a href="#news">الأخبار والإعلانات</a>
-        <a href="#contact">تواصل معنا</a>
+        <a href=\"#\" onclick=\"showStudents()\">قسم الطلاب</a>
+        <a href=\"#resources\">المواد التعليمية</a>
+        <a href=\"#news\">الأخبار والإعلانات</a>
+        <a href=\"#contact\">تواصل معنا</a>
     </nav>
-    <div class="container">
-        <div id="students" class="section">
+    <div class=\"container\">
+        <div id=\"students\" class=\"section\" style=\"display: none;\">
             <h2>قسم الطلاب</h2>
-            <p>جدول الحضور، تقييمات الطلاب، وأحدث الصور والأنشطة.</p>
+            <table class=\"student-table\">
+                <tr>
+                    <th>اسم الطالب</th>
+                    <th>المجموع</th>
+                </tr>
+                <tr><td>عبد الله المقبل</td><td>192</td></tr>
+                <tr><td>عمرو طعمة</td><td>188</td></tr>
+                <tr><td>مصعب الجابري</td><td>188</td></tr>
+                <tr><td>عمر الحسين</td><td>188</td></tr>
+                <tr><td>عمار محمد</td><td>188</td></tr>
+                <tr><td>رامي الجطيلي</td><td>186</td></tr>
+                <tr><td>سلطان الحربي</td><td>180</td></tr>
+                <tr><td>بشير النعسان</td><td>178</td></tr>
+                <tr><td>إياد الشريدة</td><td>178</td></tr>
+                <tr><td>محمد زبير</td><td>177</td></tr>
+                <tr><td>الياس ابالخيل</td><td>176</td></tr>
+                <tr><td>جهاد التويجري</td><td>176</td></tr>
+                <tr><td>يوسف أحمد</td><td>176</td></tr>
+                <tr><td>عدي البطران</td><td>173</td></tr>
+                <tr><td>عبد الرحمن الحربي</td><td>166</td></tr>
+                <tr><td>راكان المشيقح</td><td>165</td></tr>
+                <tr><td>زياد الشريدة</td><td>163</td></tr>
+                <tr><td>مياد الحربي</td><td>153</td></tr>
+                <tr><td>عبد الكريم</td><td>152</td></tr>
+                <tr><td>باسم العمر</td><td>145</td></tr>
+                <tr><td>ريان التويجري</td><td>134</td></tr>
+                <tr><td>علي الربيعة</td><td>130</td></tr>
+            </table>
         </div>
-        <div id="resources" class="section">
+        <div id=\"resources\" class=\"section\">
             <h2>المواد التعليمية</h2>
             <p>مقاطع فيديو، كتب إلكترونية، وأدوات لتعلم التجويد وتفسير القرآن.</p>
         </div>
-        <div id="news" class="section">
+        <div id=\"news\" class=\"section\">
             <h2>الأخبار والإعلانات</h2>
             <p>آخر المستجدات حول فعاليات الحلقة والمسابقات القادمة.</p>
         </div>
-        <div id="contact" class="section">
+        <div id=\"contact\" class=\"section\">
             <h2>تواصل معنا</h2>
             <p>للاستفسارات والأسئلة، يرجى ملء النموذج التالي أو الاتصال بنا.</p>
         </div>
