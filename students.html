@@ -3,98 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قسم الطلاب</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>قسم الطلاب - حلقة الإمام حمزة</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fdf7e4;
-            color: #5D4037;
+            background-color: #fef9e7;
+            color: #4a2d1e;
             margin: 0;
-        }
-        header {
-            background-color: #5D4037;
-            color: #FFF3E0;
+            padding: 0;
             text-align: center;
-            padding: 1rem 0;
         }
-        .container {
-            text-align: center;
-            margin: 2rem auto;
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: #5a3d2b;
         }
-        .button {
-            background-color: #6e4c41;
-            color: white;
-            border: none;
+        .buttons {
+            margin: 20px 0;
+        }
+        .buttons button {
             padding: 10px 20px;
             margin: 10px;
-            cursor: pointer;
-            font-size: 18px;
+            font-size: 1em;
+            border: none;
             border-radius: 5px;
+            background-color: #8d6e63;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-        .button:hover {
-            background-color: #533a31;
+        .buttons button:hover {
+            background-color: #6d4c41;
         }
-        .chart-container, .cards-container {
+        .container {
             display: none;
-            margin-top: 20px;
+            margin: 20px auto;
         }
         .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin: 10px;
             display: inline-block;
             width: 200px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .card h3 {
-            color: #6e4c41;
-        }
-        footer {
-            background-color: #5D4037;
-            color: #FFF3E0;
             text-align: center;
-            padding: 1rem 0;
-            margin-top: 20px;
+        }
+        canvas {
+            margin: 20px auto;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>قسم الطلاب</h1>
-    </header>
-
-    <div class="container">
-        <button class="button" onclick="showTopStudents()">الطلاب المتميزون</button>
-        <button class="button" onclick="showAllStudents()">جميع الطلاب</button>
+    <h1>قسم الطلاب</h1>
+    <div class="buttons">
+        <button onclick="showTopStudents()">الطلاب المتميزون</button>
+        <button onclick="showAllStudents()">جميع الطلاب</button>
     </div>
 
-    <div class="chart-container" id="chartContainer">
-        <canvas id="topStudentsChart"></canvas>
+    <div id="chartContainer" class="container">
+        <canvas id="topStudentsChart" width="400" height="200"></canvas>
     </div>
 
-    <div class="cards-container" id="cardsContainer"></div>
-
-    <footer>
-        &copy; 2024 حلقة الإمام حمزة. جميع الحقوق محفوظة.
-    </footer>
+    <div id="cardsContainer" class="container"></div>
 
     <script>
-        const topStudents = [
-            { name: "عبد الله المقبل", score: 192 },
-            { name: "عمرو طعمة", score: 188 },
-            { name: "مصعب الجابري", score: 188 },
-            { name: "عمر الحسين", score: 188 },
-            { name: "عمار محمد", score: 188 },
-            { name: "رامي الجطيلي", score: 186 },
-            { name: "سلطان الحربي", score: 180 },
-            { name: "بشير النعسان", score: 178 },
-            { name: "إياد الشريدة", score: 178 },
-            { name: "محمد زبير", score: 177 }
-        ];
-
         const allStudents = [
             { name: "عبد الله المقبل", score: 192 },
             { name: "عمرو طعمة", score: 188 },
@@ -109,24 +83,49 @@
             { name: "الياس ابالخيل", score: 176 },
             { name: "جهاد التويجري", score: 176 },
             { name: "يوسف أحمد", score: 176 },
-            { name: "عدي البطران", score: 173 }
+            { name: "عدي البطران", score: 173 },
+            { name: "عبد الرحمن الحربي", score: 166 },
+            { name: "راكان المشيقح", score: 165 },
+            { name: "زياد الشريدة", score: 163 },
+            { name: "مياد الحربي", score: 153 },
+            { name: "عبد الكريم", score: 152 },
+            { name: "باسم العمر", score: 145 },
+            { name: "ريان التويجري", score: 134 },
+            { name: "علي الربيعة", score: 130 },
         ];
 
         function showTopStudents() {
-            document.getElementById("chartContainer").style.display = "block";
             document.getElementById("cardsContainer").style.display = "none";
-
             const ctx = document.getElementById("topStudentsChart").getContext("2d");
-            new Chart(ctx, {
+            document.getElementById("chartContainer").style.display = "block";
+
+            const topStudents = allStudents.slice(0, 10);
+            const names = topStudents.map(student => student.name);
+            const scores = topStudents.map(student => student.score);
+
+            if (window.topStudentsChart) {
+                window.topStudentsChart.destroy();
+            }
+
+            window.topStudentsChart = new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: topStudents.map(student => student.name),
+                    labels: names,
                     datasets: [{
-                        label: "الدرجات",
-                        data: topStudents.map(student => student.score),
-                        backgroundColor: "#6e4c41",
-                        borderColor: "#533a31"
+                        label: "درجات الطلاب المتميزين",
+                        data: scores,
+                        backgroundColor: "#8d6e63",
+                        borderColor: "#5a3d2b",
+                        borderWidth: 1
                     }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
             });
         }
