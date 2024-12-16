@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حلقة الإمام حمزة</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
+            background-color: #f5f5dc; /* بيج */
+            color: #4e342e; /* بني */
         }
         header {
-            background-color: #004d40;
-            color: #ffd700;
+            background-color: #6d4c41; /* بني داكن */
+            color: #d7ccc8; /* بيج فاتح */
             padding: 1rem 0;
             text-align: center;
         }
         nav {
-            background-color: #00695c;
+            background-color: #8d6e63; /* بني متوسط */
             display: flex;
             justify-content: center;
             padding: 0.5rem 0;
@@ -34,48 +36,40 @@
         }
         .container {
             padding: 2rem;
-        }
-        .section {
-            margin-bottom: 2rem;
-        }
-        .section h2 {
-            color: #004d40;
-            border-bottom: 2px solid #ffd700;
-            padding-bottom: 0.5rem;
-        }
-        .student-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-        .student-table th, .student-table td {
-            border: 1px solid #ddd;
-            padding: 0.75rem;
             text-align: center;
         }
-        .student-table th {
-            background-color: #004d40;
-            color: #ffffff;
+        .section h2 {
+            color: #4e342e; /* بني */
+            border-bottom: 2px solid #8d6e63;
+            padding-bottom: 0.5rem;
         }
-        .student-table tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .buttons {
+            margin-bottom: 1rem;
+        }
+        .buttons button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: none;
+            background-color: #6d4c41; /* بني */
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #5d4037;
+        }
+        .chart-container {
+            width: 80%;
+            margin: auto;
         }
         footer {
-            background-color: #004d40;
+            background-color: #6d4c41;
             color: #ffffff;
             text-align: center;
             padding: 1rem 0;
             margin-top: 2rem;
         }
     </style>
-    <script>
-        function showStudents() {
-            document.getElementById('students').style.display = 'block';
-            document.getElementById('resources').style.display = 'none';
-            document.getElementById('news').style.display = 'none';
-            document.getElementById('contact').style.display = 'none';
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -83,15 +77,19 @@
         <p>تعلم القرآن الكريم وتدبر معانيه</p>
     </header>
     <nav>
-        <a href=\"#\" onclick=\"showStudents()\">قسم الطلاب</a>
-        <a href=\"#resources\">المواد التعليمية</a>
-        <a href=\"#news\">الأخبار والإعلانات</a>
-        <a href=\"#contact\">تواصل معنا</a>
+        <a href="#students">قسم الطلاب</a>
+        <a href="#resources">المواد التعليمية</a>
+        <a href="#news">الأخبار والإعلانات</a>
+        <a href="#contact">تواصل معنا</a>
     </nav>
-    <div class=\"container\">
-        <div id=\"students\" class=\"section\" style=\"display: none;\">
-            <h2>قسم الطلاب</h2>
-            <table class=\"student-table\">
+    <div class="container" id="students">
+        <h2>قسم الطلاب</h2>
+        <div class="buttons">
+            <button onclick="showTable()">أسماء الطلاب ودرجاتهم</button>
+            <button onclick="showChart()">الطلاب المتميزون (رسم بياني)</button>
+        </div>
+        <div id="table-container" style="display: none;">
+            <table border="1" cellpadding="10" cellspacing="0" style="margin: auto;">
                 <tr>
                     <th>اسم الطالب</th>
                     <th>المجموع</th>
@@ -102,39 +100,45 @@
                 <tr><td>عمر الحسين</td><td>188</td></tr>
                 <tr><td>عمار محمد</td><td>188</td></tr>
                 <tr><td>رامي الجطيلي</td><td>186</td></tr>
-                <tr><td>سلطان الحربي</td><td>180</td></tr>
-                <tr><td>بشير النعسان</td><td>178</td></tr>
-                <tr><td>إياد الشريدة</td><td>178</td></tr>
-                <tr><td>محمد زبير</td><td>177</td></tr>
-                <tr><td>الياس ابالخيل</td><td>176</td></tr>
-                <tr><td>جهاد التويجري</td><td>176</td></tr>
-                <tr><td>يوسف أحمد</td><td>176</td></tr>
-                <tr><td>عدي البطران</td><td>173</td></tr>
-                <tr><td>عبد الرحمن الحربي</td><td>166</td></tr>
-                <tr><td>راكان المشيقح</td><td>165</td></tr>
-                <tr><td>زياد الشريدة</td><td>163</td></tr>
-                <tr><td>مياد الحربي</td><td>153</td></tr>
-                <tr><td>عبد الكريم</td><td>152</td></tr>
-                <tr><td>باسم العمر</td><td>145</td></tr>
-                <tr><td>ريان التويجري</td><td>134</td></tr>
-                <tr><td>علي الربيعة</td><td>130</td></tr>
             </table>
         </div>
-        <div id=\"resources\" class=\"section\">
-            <h2>المواد التعليمية</h2>
-            <p>مقاطع فيديو، كتب إلكترونية، وأدوات لتعلم التجويد وتفسير القرآن.</p>
-        </div>
-        <div id=\"news\" class=\"section\">
-            <h2>الأخبار والإعلانات</h2>
-            <p>آخر المستجدات حول فعاليات الحلقة والمسابقات القادمة.</p>
-        </div>
-        <div id=\"contact\" class=\"section\">
-            <h2>تواصل معنا</h2>
-            <p>للاستفسارات والأسئلة، يرجى ملء النموذج التالي أو الاتصال بنا.</p>
+        <div id="chart-container" class="chart-container" style="display: none;">
+            <canvas id="studentsChart"></canvas>
         </div>
     </div>
     <footer>
         <p>&copy; 2024 حلقة الإمام حمزة. جميع الحقوق محفوظة.</p>
     </footer>
+    <script>
+        function showTable() {
+            document.getElementById('table-container').style.display = 'block';
+            document.getElementById('chart-container').style.display = 'none';
+        }
+        function showChart() {
+            document.getElementById('table-container').style.display = 'none';
+            document.getElementById('chart-container').style.display = 'block';
+            const ctx = document.getElementById('studentsChart').getContext('2d');
+            const studentsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['عبد الله المقبل', 'عمرو طعمة', 'مصعب الجابري', 'عمر الحسين', 'عمار محمد', 'رامي الجطيلي'],
+                    datasets: [{
+                        label: 'درجات الطلاب',
+                        data: [192, 188, 188, 188, 188, 186],
+                        backgroundColor: '#6d4c41',
+                        borderColor: '#5d4037',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
