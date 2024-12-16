@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قسم الطلاب</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf7e4;
+            color: #5D4037;
+            margin: 0;
+        }
+        header {
+            background-color: #5D4037;
+            color: #FFF3E0;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .container {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        .button {
+            background-color: #6e4c41;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #533a31;
+        }
+        .chart-container, .cards-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .card {
+            display: inline-block;
+            width: 200px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            color: #6e4c41;
+        }
+        footer {
+            background-color: #5D4037;
+            color: #FFF3E0;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>قسم الطلاب</h1>
+    </header>
+
+    <div class="container">
+        <button class="button" onclick="showTopStudents()">الطلاب المتميزون</button>
+        <button class="button" onclick="showAllStudents()">جميع الطلاب</button>
+    </div>
+
+    <div class="chart-container" id="chartContainer">
+        <canvas id="topStudentsChart"></canvas>
+    </div>
+
+    <div class="cards-container" id="cardsContainer"></div>
+
+    <footer>
+        &copy; 2024 حلقة الإمام حمزة. جميع الحقوق محفوظة.
+    </footer>
+
+    <script>
+        const topStudents = [
+            { name: "عبد الله المقبل", score: 192 },
+            { name: "عمرو طعمة", score: 188 },
+            { name: "مصعب الجابري", score: 188 },
+            { name: "عمر الحسين", score: 188 },
+            { name: "عمار محمد", score: 188 },
+            { name: "رامي الجطيلي", score: 186 },
+            { name: "سلطان الحربي", score: 180 },
+            { name: "بشير النعسان", score: 178 },
+            { name: "إياد الشريدة", score: 178 },
+            { name: "محمد زبير", score: 177 }
+        ];
+
+        const allStudents = [
+            { name: "عبد الله المقبل", score: 192 },
+            { name: "عمرو طعمة", score: 188 },
+            { name: "مصعب الجابري", score: 188 },
+            { name: "عمر الحسين", score: 188 },
+            { name: "عمار محمد", score: 188 },
+            { name: "رامي الجطيلي", score: 186 },
+            { name: "سلطان الحربي", score: 180 },
+            { name: "بشير النعسان", score: 178 },
+            { name: "إياد الشريدة", score: 178 },
+            { name: "محمد زبير", score: 177 },
+            { name: "الياس ابالخيل", score: 176 },
+            { name: "جهاد التويجري", score: 176 },
+            { name: "يوسف أحمد", score: 176 },
+            { name: "عدي البطران", score: 173 }
+        ];
+
+        function showTopStudents() {
+            document.getElementById("chartContainer").style.display = "block";
+            document.getElementById("cardsContainer").style.display = "none";
+
+            const ctx = document.getElementById("topStudentsChart").getContext("2d");
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: topStudents.map(student => student.name),
+                    datasets: [{
+                        label: "الدرجات",
+                        data: topStudents.map(student => student.score),
+                        backgroundColor: "#6e4c41",
+                        borderColor: "#533a31"
+                    }]
+                }
+            });
+        }
+
+        function showAllStudents() {
+            document.getElementById("chartContainer").style.display = "none";
+            const container = document.getElementById("cardsContainer");
+            container.innerHTML = "";
+            container.style.display = "block";
+
+            allStudents.forEach(student => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<h3>${student.name}</h3><p>المجموع: ${student.score}</p>`;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
